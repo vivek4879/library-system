@@ -1,0 +1,15 @@
+  # Maven build output                                                                                                                                                                                         
+  target/                                                                                                                                                                                                      
+   
+  # Compiled Java bytecode (anywhere)                                                                                                                                                                          
+  *.class                                                   
+                                                                                                                                                                                                               
+  # IntelliJ IDEA                                           
+  .idea/
+  *.iml
+
+  # VS Code
+  .vscode/
+                                                                                                                                                                                                               
+  # macOS
+  .DS_Store 
