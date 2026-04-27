@@ -18,7 +18,7 @@ public class CheckoutRecord{
         this.checkoutDate = checkoutDate;
         this.dueDate = checkoutDate.plusDays(14); //plusDays returns a new LocalDate
         returnDate = null;
-        fineAccrued = BigDecimal.ZERO;
+        fineAccrued = BigDecimal.ZERO; // using zero isntead of new BigDecimal("0") because .ZERO is a chached singleton. Every reference points to the same object. if we create new  the nit allocates a fresh object every time its called.
 
     }
 
