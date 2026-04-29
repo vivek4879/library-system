@@ -64,6 +64,13 @@ public class Library implements LibraryOperations{
 //SetClock violats all three.
 //immutabile wiring means dependencies locked at construction. final field + no setter. we give that up
 // only wehn testability demands it.
+//without setCLock every test that wants to advance test has to construct a brand new Library, regirst member, add books, check out books,
+//then advance clock to test fine accrual.
+//Other alternatives
+// 1. pass clock in every methiod ->pollutes public api
+// 2. reconstruct lib -> loss of in memory state.
+// 3. mock LocalDate.now() -> needs piwermock.mockito-inline, fragile, slow.
+//so setClock is the least bad option.
     public void setClock(Clock clock) {
         this.clock = clock;
     }
@@ -109,7 +116,8 @@ public class Library implements LibraryOperations{
         }
 
         BigDecimal currentFine = calculateFine(memberId);
-
+        ///bigdecimal is an object, not a primitive so operators <,>,<= dont work as they work on primitiveso nly.
+        for objects comparison goes through methods.
         if(currentFine.compareTo(FINE_LIMIT) > 0){
             throw new OutstandingFinesException(memberId, currentFine);
         }
@@ -161,6 +169,9 @@ public class Library implements LibraryOperations{
         // Calculate fine for this book if returned late
         LocalDate today = LocalDate.now(clock);
         BigDecimal fine = computeOverDueFine(record, today);
+        //we have denormalized fine here. denormalizatoin is safe when there is a single source of truth
+        //for writes. so it would never drift even with having fines at two places.
+
         member.addFine(fine);
         record.markReturned(today, fine);
         member.removeCheckout(isbn);
