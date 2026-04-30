@@ -1,15 +1,18 @@
-  # Maven build output                                                                                                                                                                                         
-  target/                                                                                                                                                                                                      
-   
-  # Compiled Java bytecode (anywhere)                                                                                                                                                                          
-  *.class                                                   
-                                                                                                                                                                                                               
-  # IntelliJ IDEA                                           
-  .idea/
-  *.iml
+# Maven build output
+target/
 
-  # VS Code
-  .vscode/
-                                                                                                                                                                                                               
-  # macOS
-  .DS_Store 
+# Compiled Java bytecode (anywhere)
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Personal study notes (not part of the project deliverable)
+notes.md

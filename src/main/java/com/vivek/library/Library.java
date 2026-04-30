@@ -117,7 +117,7 @@ public class Library implements LibraryOperations{
 
         BigDecimal currentFine = calculateFine(memberId);
         ///bigdecimal is an object, not a primitive so operators <,>,<= dont work as they work on primitiveso nly.
-        for objects comparison goes through methods.
+        // for objects comparison goes through methods.
         if(currentFine.compareTo(FINE_LIMIT) > 0){
             throw new OutstandingFinesException(memberId, currentFine);
         }
